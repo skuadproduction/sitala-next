@@ -4,12 +4,15 @@ import Image from "next/image";
 
 import "primeicons/primeicons.css";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import wonogiriLogo from "@/public/wonogiri1.png";
 // const [selectPosition, setSelectPosition] = useState(null);
+
 export default function MapsLayout({
 	children, // will be a page or nested layout
 }) {
+	const _pathname = usePathname();
 	return (
 		<section>
 			<div className="navbar bg-base-300 rounded-b-lg">
@@ -70,9 +73,11 @@ export default function MapsLayout({
 							<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
 						</svg>
 					</label>
-					<label htmlFor="my-drawer" className="btn btn-ghost drawer-button">
-						<i className="pi pi-search"></i>
-					</label>
+					{_pathname !== "/pages/download_file" && (
+						<label htmlFor="my-drawer" className="btn btn-ghost drawer-button">
+							<i className="pi pi-search"></i>
+						</label>
+					)}
 				</div>
 			</div>
 			{children}
