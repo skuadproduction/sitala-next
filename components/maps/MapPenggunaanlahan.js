@@ -33,9 +33,9 @@ const MapTataruang = (props, items) => {
 
 	const [geoJsonData, setGeoJsonData] = useState(null);
 
-	const url = "http://localhost:3001/api/locations/all/datas?filter=PenggunaanLahans";
+	// const url = "http://localhost:3001/api/locations/all/datas?filter=PenggunaanLahans";
 	// const url = "http://localhost:3001/api/locations/penggunaan_lahan/all/datas";
-	// const url = "https://sitala-api.jurnalpendidikan.online:9000/api/locations/all/datas?filter=PenggunaanLahans";
+	const url = "https://sitala-api.jurnalpendidikan.online:9000/api/locations/all/datas?filter=PenggunaanLahans";
 
 	const fetchGeoJSONData = async () => {
 		try {
@@ -108,11 +108,13 @@ const MapTataruang = (props, items) => {
 		<>
 			<MapContainer center={center} zoom={13} style={{ height: "93.2dvh", width: "100%" }} zoomControl={false}>
 				{/* own component */}
-				{/* <div className="absolute top-4 left-0 w-full z-[999] p-3">
-					<div className="flex">
-						<SearchLoc />
-					</div>
-				</div> */}
+				<div className="z-[10000] flex justify-center items-center h-full">
+					{geoJsonData === null && (
+						<div className="flex justify-center items-center h-full w-full z-[10000] text-6xl backdrop-blur-sm bg-slate-600/30">
+							<span className="loading loading-spinner loading-lg text-primary"></span>
+						</div>
+					)}
+				</div>
 
 				<ZoomControl position="bottomright" />
 

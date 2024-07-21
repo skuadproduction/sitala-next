@@ -36,9 +36,9 @@ const MapWilayah = (props) => {
 
 	const [geoJsonData, setGeoJsonData] = useState(null);
 
-	const url = "http://localhost:3001/api/locations/all/datas?filter=Wilayahs";
+	// const url = "http://localhost:3001/api/locations/all/datas?filter=Wilayahs";
 	// const url = "http://localhost:3001/api/locations/wilayah/all/datas";
-	// const url = "https://sitala-api.jurnalpendidikan.online:9000/api/locations/wilayah/all/datas";
+	const url = "https://sitala-api.jurnalpendidikan.online:9000/api/locations/all/datas?filter=Wilayahs";
 
 	const fetchGeoJSONData = async () => {
 		try {
@@ -171,6 +171,13 @@ const MapWilayah = (props) => {
 		<>
 			{/* Page content here */}
 			<MapContainer center={center} zoom={13} style={{ height: "93.2dvh", width: "100%" }} zoomControl={false}>
+				<div className="z-[10000] flex justify-center items-center h-full">
+					{geoJsonData === null && (
+						<div className="flex justify-center items-center h-full w-full z-[10000] text-6xl backdrop-blur-sm bg-slate-600/30">
+							<span className="loading loading-spinner loading-lg text-primary"></span>
+						</div>
+					)}
+				</div>
 				<ZoomControl position="bottomright" />
 				<LayersControl position="bottomleft" collapsed={true}>
 					<LayersControl.BaseLayer name="Base" checked={true}>

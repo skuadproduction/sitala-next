@@ -33,9 +33,9 @@ const MapPolaruang = (props) => {
 
 	const [geoJsonData, setGeoJsonData] = useState(null);
 
-	// const url = "https://sitala-api.jurnalpendidikan.online:9000/api/locations/pola_ruang/all/datas";
+	const url = "https://sitala-api.jurnalpendidikan.online:9000/api/locations/all/datas?filter=PolaRuangs";
 	// const url = "http://localhost:3001/api/locations/pola_ruang/all/datas";
-	const url = "http://localhost:3001/api/locations/all/datas?filter=PolaRuangs";
+	// const url = "http://localhost:3001/api/locations/all/datas?filter=PolaRuangs";
 
 	const fetchGeoJSONData = async () => {
 		try {
@@ -43,7 +43,7 @@ const MapPolaruang = (props) => {
 			const response = await fetch(url);
 			const { datas } = await response.json();
 			setGeoJsonData(datas);
-			console.log(datas);
+			// console.log(datas);
 			// }, 3000);
 		} catch (error) {
 			console.error("Error fetching GeoJSON data:", error);
@@ -72,7 +72,7 @@ const MapPolaruang = (props) => {
 
 	if (geoJsonData) {
 		HutanLindung = geoJsonData.features.filter((list) => list.properties.NAMOBJ === "Kawasan Hutan Lindung");
-		console.log(HutanLindung);
+		// console.log(HutanLindung);
 	}
 
 	if (geoJsonData) {
@@ -124,11 +124,13 @@ const MapPolaruang = (props) => {
 		<>
 			<MapContainer center={center} zoom={13} style={{ height: "93.2dvh", width: "100%" }} zoomControl={false}>
 				{/* own component */}
-				{/* <div className="absolute top-4 left-0 w-full z-[999] p-3">
-					<div className="flex">
-						<SearchLoc />
-					</div>
-				</div> */}
+				<div className="z-[10000] flex justify-center items-center h-full">
+					{geoJsonData === null && (
+						<div className="flex justify-center items-center h-full w-full z-[10000] text-6xl backdrop-blur-sm bg-slate-600/30">
+							<span className="loading loading-spinner loading-lg text-primary"></span>
+						</div>
+					)}
+				</div>
 
 				<ZoomControl position="bottomright" />
 
