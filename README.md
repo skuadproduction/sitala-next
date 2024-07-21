@@ -1,10 +1,12 @@
 ## SITALA PROJECT
 
-[EN]
-It's a WebGIS application that to show users who want to see Information about land in Wonogiri.
-
 [ID]
+
 Merupakan aplikasi WebGIS yang memberikan informasi kepada pengguna tentang lahan di Wonogiri.
+
+[EN]
+
+It's a WebGIS application that to show users who want to see Information about land in Wonogiri.
 
 Build using:
 
@@ -17,7 +19,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Getting Started
 
 After cloning the repository, you need to install all the dependencies, run this command in your terminal :
-[NPM](https://www.npmjs.com/) :
+
+npm:
 
 ```bash
 npm install
@@ -31,13 +34,13 @@ npm i
 
 To run the development server:
 
-[NPM](https://www.npmjs.com/) :
+npm:
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then, open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Learn More
 
