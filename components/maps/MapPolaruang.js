@@ -144,6 +144,9 @@ const MapPolaruang = (props) => {
 							attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 						/>
 					</LayersControl.BaseLayer>
+					<LayersControl.BaseLayer name="Satellite">
+						<TileLayer url="http://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
+					</LayersControl.BaseLayer>
 					{/* Pola Ruang */}
 					<LayersControl.Overlay name="POLA RUANG"></LayersControl.Overlay>
 					<LayersControl.Overlay checked name="[POLA RUANG]_Kawasan Hutan Lindung">
@@ -181,6 +184,9 @@ const MapPolaruang = (props) => {
 					</LayersControl.Overlay>
 					<LayersControl.Overlay checked name="[POLA RUANG]_Sempadan Sungai">
 						{SempadanSungai && <GeoJSON data={SempadanSungai} style={{ weight: 2, color: "#000dfe" }} />}
+					</LayersControl.Overlay>
+					<LayersControl.Overlay checked name="Map Label">
+						<TileLayer url="http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png" attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
 					</LayersControl.Overlay>
 				</LayersControl>
 				{/* {geoJsonData && geoJsonLayerRef.current && <SearchControl geoJsonLayer={geoJsonLayerRef.current} className="input input-bordered" />} */}

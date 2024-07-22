@@ -9,26 +9,21 @@ import { useState } from "react";
 const btnLink = [
 	{
 		id: 1,
-		label: "Data Bidang Tanah",
-		endpoint: "BidangTanahs",
-	},
-	{
-		id: 2,
 		label: "Data Penggunaan Lahan",
 		endpoint: "PenggunaanLahans",
 	},
 	{
-		id: 3,
+		id: 2,
 		label: "Data Pola Ruang",
 		endpoint: "PolaRuangs",
 	},
 	{
-		id: 4,
+		id: 3,
 		label: "Data Wilayah",
 		endpoint: "Wilayahs",
 	},
 	{
-		id: 5,
+		id: 4,
 		label: "Data ZNT",
 		endpoint: "ZNTs",
 	},

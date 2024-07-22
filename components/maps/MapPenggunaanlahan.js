@@ -128,6 +128,9 @@ const MapTataruang = (props, items) => {
 							attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 						/>
 					</LayersControl.BaseLayer>
+					<LayersControl.BaseLayer name="Satellite">
+						<TileLayer url="http://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
+					</LayersControl.BaseLayer>
 					{/* LSD */}
 					<LayersControl.Overlay checked name="Koreksi Pengurang">
 						{Koreksi_pengurang && <GeoJSON data={Koreksi_pengurang} style={{ weight: 2, color: "#5d80ff" }} onEachFeature={onEachData} />}
@@ -137,6 +140,9 @@ const MapTataruang = (props, items) => {
 					</LayersControl.Overlay>
 					<LayersControl.Overlay checked name="Seapakat Tidak Dipertahankan">
 						{Sepakat_tidak_dipertahankan && <GeoJSON data={Sepakat_tidak_dipertahankan} style={{ weight: 2, color: "#ff8001" }} onEachFeature={onEachData} />}
+					</LayersControl.Overlay>
+					<LayersControl.Overlay checked name="Map Label">
+						<TileLayer url="http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png" attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
 					</LayersControl.Overlay>
 
 					{/* LSD */}

@@ -119,6 +119,9 @@ const MapZNT = (props) => {
 							attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 						/>
 					</LayersControl.BaseLayer>
+					<LayersControl.BaseLayer name="Satellite">
+						<TileLayer url="http://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
+					</LayersControl.BaseLayer>
 					<LayersControl.Overlay checked name="0-25000">
 						<LayerGroup>{first && <GeoJSON data={first} style={{ weight: 2, color: "#f7d550" }} />}</LayerGroup>
 					</LayersControl.Overlay>
@@ -142,6 +145,9 @@ const MapZNT = (props) => {
 					</LayersControl.Overlay>
 					<LayersControl.Overlay checked name="1100000+">
 						<LayerGroup>{eighth && <GeoJSON data={eighth} style={{ weight: 2, color: "#630a02" }} />}</LayerGroup>
+					</LayersControl.Overlay>
+					<LayersControl.Overlay checked name="Map Label">
+						<TileLayer url="http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png" attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
 					</LayersControl.Overlay>
 				</LayersControl>
 

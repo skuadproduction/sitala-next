@@ -189,6 +189,9 @@ const MapWilayah = (props) => {
 							attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 						/>
 					</LayersControl.BaseLayer>
+					<LayersControl.BaseLayer name="Satellite">
+						<TileLayer url="http://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
+					</LayersControl.BaseLayer>
 					<LayersControl.Overlay checked name="01_Wilayah_Administrasi">
 						<LayerGroup>{WilayahAdministrasi && <GeoJSON data={WilayahAdministrasi} style={{ weight: 2, color: "#ffefb7" }} />}</LayerGroup>
 					</LayersControl.Overlay>
@@ -266,6 +269,9 @@ const MapWilayah = (props) => {
 					</LayersControl.Overlay>
 					<LayersControl.Overlay checked name="Hutan Produksi Terbatas">
 						<LayerGroup>{HutanProduksiTerbatas && <GeoJSON data={HutanProduksiTerbatas} style={{ weight: 2, color: "#9aff8b" }} />}</LayerGroup>
+					</LayersControl.Overlay>
+					<LayersControl.Overlay checked name="Map Label">
+						<TileLayer url="http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png" attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
 					</LayersControl.Overlay>
 				</LayersControl>
 
