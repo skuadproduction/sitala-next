@@ -104,12 +104,8 @@ const MapBidangtanah = (props) => {
 		// console.log(BidangBersertifikat);
 	}
 	if (geoJsonData) {
-		BelumSertifikat = geoJsonData.features.filter((list) => list.properties.CODE === 3);
+		BelumSertifikat = geoJsonData.features.filter((list) => list.properties.CODE === 3 || list.properties.CODE === 4);
 		// console.log(BelumSertifikat);
-	}
-	if (geoJsonData) {
-		TanpaNama = geoJsonData.features.filter((list) => list.properties.CODE === 4);
-		// console.log(TanpaNama);
 	}
 
 	return (
@@ -137,17 +133,14 @@ const MapBidangtanah = (props) => {
 					<LayersControl.BaseLayer name="Satellite">
 						<TileLayer url="http://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
 					</LayersControl.BaseLayer>
-					<LayersControl.Overlay checked name="Belum Bersertifikat">
+					<LayersControl.Overlay checked name="Aset Pemerintah Wonogiri">
+						<LayerGroup>{Pemerintah && <GeoJSON data={Pemerintah} style={{ weight: 2, color: "#53fb56" }} ref={geoJsonLayerRef} onEachFeature={onEachData} />}</LayerGroup>
+					</LayersControl.Overlay>
+					<LayersControl.Overlay checked name="Bidang Belum Bersertifikat">
 						<LayerGroup>{BelumSertifikat && <GeoJSON data={BelumSertifikat} style={{ weight: 2, color: "#ff4d4d" }} ref={geoJsonLayerRef} onEachFeature={onEachData} />}</LayerGroup>
 					</LayersControl.Overlay>
 					<LayersControl.Overlay checked name="Bidang Bersertifikat">
 						<LayerGroup>{BidangBersertifikat && <GeoJSON data={BidangBersertifikat} style={{ weight: 2, color: "#fbed74" }} ref={geoJsonLayerRef} onEachFeature={onEachData} />}</LayerGroup>
-					</LayersControl.Overlay>
-					<LayersControl.Overlay checked name="Pemerintah Wonogiri">
-						<LayerGroup>{Pemerintah && <GeoJSON data={Pemerintah} style={{ weight: 2, color: "#53fb56" }} ref={geoJsonLayerRef} onEachFeature={onEachData} />}</LayerGroup>
-					</LayersControl.Overlay>
-					<LayersControl.Overlay checked name="Tanpa Nama">
-						<LayerGroup>{TanpaNama && <GeoJSON data={TanpaNama} style={{ weight: 2, color: "#5c5cff" }} ref={geoJsonLayerRef} onEachFeature={onEachData} />}</LayerGroup>
 					</LayersControl.Overlay>
 					<LayersControl.Overlay checked name="Map Label">
 						<TileLayer url="http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png" attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
