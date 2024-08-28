@@ -58,8 +58,8 @@ const MapBidangtanah = (props) => {
 	const [geoJsonData, setGeoJsonData] = useState(null);
 	const geoJsonLayerRef = useRef(null);
 
-	// const url = "https://sitala-api.jurnalpendidikan.online:9000/api/locations/all/datas?filter=BidangTanahs";
-	const url = "http://localhost:3001/api/locations/all/datas?filter=BidangTanahs";
+	const url = "https://sitala-api.jurnalpendidikan.online:9000/api/locations/all/datas?filter=BidangTanahs";
+	// const url = "http://localhost:3001/api/locations/all/datas?filter=BidangTanahs";
 
 	const fetchGeoJSONData = async () => {
 		try {
@@ -78,8 +78,8 @@ const MapBidangtanah = (props) => {
 
 	const [batasADM, setbatasADM] = useState(null);
 
-	// const _url = "https://sitala-api.jurnalpendidikan.online:9000/api/locations/all/datas?filter=BatasWilayahs";
-	const _url = "http://localhost:3001/api/locations/all/datas?filter=BatasWilayahs";
+	const _url = "https://sitala-api.jurnalpendidikan.online:9000/api/locations/all/datas?filter=BatasWilayahs";
+	// const _url = "http://localhost:3001/api/locations/all/datas?filter=BatasWilayahs";
 
 	const fetchBatasADMData = async () => {
 		try {
