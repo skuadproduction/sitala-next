@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, GeoJSON, useMap, LayersControl, LayerGroup, Zo
 import "leaflet/dist/leaflet.css";
 import "leaflet-search/dist/leaflet-search.src.css";
 import "leaflet-search/dist/leaflet-search.src";
-import "@/components/maps/MapBidangtanah.css";
+// import "@/components/maps/MapBidangtanah.css";
 
 // import images
 
@@ -37,7 +37,7 @@ const SearchControl = ({ geoJsonLayer }) => {
 				layer: geoJsonLayer,
 				propertyName: "NOMOR_HAK",
 				zoom: 18,
-				collapsed: false,
+				collapsed: true,
 				textPlaceholder: "Cari Nama..",
 				position: "topright",
 				textErr: "Pemilik tidak sesuai.",
@@ -58,8 +58,8 @@ const MapBidangtanah = (props) => {
 	const [geoJsonData, setGeoJsonData] = useState(null);
 	const geoJsonLayerRef = useRef(null);
 
-	const url = "https://sitala-api.jurnalpendidikan.online:9000/api/locations/all/datas?filter=BidangTanahs";
-	// const url = "http://localhost:3001/api/locations/all/datas?filter=BidangTanahs";
+	// const url = "https://sitala-api.jurnalpendidikan.online:9000/api/locations/all/datas?filter=BidangTanahs";
+	const url = "http://localhost:3001/api/locations/all/datas?filter=BidangTanahs";
 
 	const fetchGeoJSONData = async () => {
 		try {
@@ -76,36 +76,70 @@ const MapBidangtanah = (props) => {
 		fetchGeoJSONData();
 	}, []);
 
-	const onEachData = (feature, layer) => {
-		const id = feature.id;
-		const nomor_hak = feature.properties.NOMOR_HAK;
-		const pemilik = feature.properties.PEMILIK;
+	const [batasADM, setbatasADM] = useState(null);
 
-		if ((nomor_hak, pemilik)) {
-			layer.bindPopup(`<strong>KETERANGAN</strong></br><strong>NOMOR_HAK: ${nomor_hak}</strong> <br/> PEMILIK: ${pemilik}`);
-		} else if ((pemilik === null) & (nomor_hak !== null)) {
-			layer.bindPopup(`<strong>KETERANGAN</strong></br><strong>NOMOR_HAK: ${nomor_hak}</strong> <br/> PEMILIK: ${pemilik}`);
-		} else {
-			layer.bindPopup("<strong>KETERANGAN</strong><br/> Pemilik Tidak ditemukan <br/> atau <br/> Bidang ini tidak berpemilik.");
+	// const _url = "https://sitala-api.jurnalpendidikan.online:9000/api/locations/all/datas?filter=BatasWilayahs";
+	const _url = "http://localhost:3001/api/locations/all/datas?filter=BatasWilayahs";
+
+	const fetchBatasADMData = async () => {
+		try {
+			const response = await fetch(_url);
+			const { datas } = await response.json();
+			setbatasADM(datas);
+			// console.log(datas);
+		} catch (error) {
+			console.error("Error fetching GeoJSON data:", error);
+		}
+	};
+
+	useEffect(() => {
+		fetchBatasADMData();
+	}, []);
+
+	const onEachData = (feature, layer) => {
+		const pemilik = feature.properties.PEMILIK;
+		const kecamatan = feature.properties.KECAMATAN;
+		const kelurahan = feature.properties.KELURAHAN;
+		const rtrw = feature.properties.RTRW;
+		const coordinates = feature.properties.KOORDINAT;
+		const _layer = feature.properties.LAYER;
+
+		if ((_layer, pemilik)) {
+			layer.bindPopup(
+				`<strong>KECAMATAN :</strong> ${kecamatan}</br><strong>KELURAHAN: </strong>${kelurahan} <br/> <strong> PEMILIK : </strong> ${pemilik}<br/><strong>RTRW :</strong> ${rtrw}</br><strong>KOORDINAT :</strong> ${coordinates}<br/>${_layer}`
+			);
 		}
 	};
 
 	let BelumSertifikat = null;
 	let BidangBersertifikat = null;
-	let Pemerintah = null;
-	let TanpaNama = null;
+	let PemerintahPusat = null;
+	let PemerintahKELURAHAN = null;
+	let PemerintahDesa = null;
 
 	if (geoJsonData) {
-		Pemerintah = geoJsonData.features.filter((list) => list.properties.CODE === 1);
-		// console.log(Pemerintah);
-	}
-	if (geoJsonData) {
-		BidangBersertifikat = geoJsonData.features.filter((list) => list.properties.CODE === 2);
-		// console.log(BidangBersertifikat);
-	}
-	if (geoJsonData) {
-		BelumSertifikat = geoJsonData.features.filter((list) => list.properties.CODE === 3 || list.properties.CODE === 4);
+		BelumSertifikat = geoJsonData.features.filter((list) => {
+			if (list.properties.LAYER.toLowerCase() === "tanah bersertifikat") {
+				return list;
+			}
+		});
 		// console.log(BelumSertifikat);
+	}
+	if (geoJsonData) {
+		PemerintahKELURAHAN = geoJsonData.features.filter((list) => list.properties.LAYER === "Milik Pemerintah Kelurahan");
+		// console.log(PemerintahKELURAHAN);
+	}
+	if (geoJsonData) {
+		PemerintahDesa = geoJsonData.features.filter((list) => list.properties.LAYER === "Milik Pemerintah Desa");
+		// console.log(PemerintahDesa);
+	}
+	if (geoJsonData) {
+		PemerintahPusat = geoJsonData.features.filter((list) => list.properties.LAYER === "Milik Pemerintah Pusat");
+		// console.log(PemerintahPusat);
+	}
+	if (geoJsonData) {
+		BidangBersertifikat = geoJsonData.features.filter((list) => list.properties.LAYER === "Tanah Bersertifikat");
+		// console.log(BidangBersertifikat);
 	}
 
 	return (
@@ -121,7 +155,7 @@ const MapBidangtanah = (props) => {
 				</div>
 				<ZoomControl position="bottomright" />
 				<LayersControl position="bottomleft" collapsed={false}>
-					<LayersControl.BaseLayer name="Base" checked={true}>
+					<LayersControl.BaseLayer name="Base">
 						<TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
 					</LayersControl.BaseLayer>
 					<LayersControl.BaseLayer name="Dark">
@@ -130,17 +164,33 @@ const MapBidangtanah = (props) => {
 							attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 						/>
 					</LayersControl.BaseLayer>
-					<LayersControl.BaseLayer name="Satellite">
+					<LayersControl.BaseLayer name="Satellite" checked={true}>
 						<TileLayer url="http://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
 					</LayersControl.BaseLayer>
-					<LayersControl.Overlay checked name="Aset Pemerintah Wonogiri">
-						<LayerGroup>{Pemerintah && <GeoJSON data={Pemerintah} style={{ weight: 2, color: "#53fb56" }} ref={geoJsonLayerRef} onEachFeature={onEachData} />}</LayerGroup>
+
+					{/* ALL DATA FOR SEARCH */}
+
+					<LayerGroup>{geoJsonData && <GeoJSON data={geoJsonData} style={{ weight: 0.5, color: "gray" }} ref={geoJsonLayerRef} onEachFeature={onEachData} />}</LayerGroup>
+
+					{/* ALL DATA FOR SEARCH */}
+
+					{/* batas adm */}
+					<LayerGroup>{batasADM && <GeoJSON data={batasADM} style={{ weight: 2, color: "gray" }} />}</LayerGroup>
+
+					<LayersControl.Overlay checked name="Belum Bersertifikat">
+						<LayerGroup>{BelumSertifikat && <GeoJSON data={BelumSertifikat} style={{ weight: 1, color: "#42454a" }} onEachFeature={onEachData} />}</LayerGroup>
 					</LayersControl.Overlay>
-					<LayersControl.Overlay checked name="Bidang Belum Bersertifikat">
-						<LayerGroup>{BelumSertifikat && <GeoJSON data={BelumSertifikat} style={{ weight: 2, color: "#ff4d4d" }} ref={geoJsonLayerRef} onEachFeature={onEachData} />}</LayerGroup>
+					<LayersControl.Overlay checked name="Milik Pemerintah Pusat">
+						<LayerGroup>{PemerintahPusat && <GeoJSON data={PemerintahPusat} style={{ weight: 2, color: "#231782" }} onEachFeature={onEachData} />}</LayerGroup>
 					</LayersControl.Overlay>
-					<LayersControl.Overlay checked name="Bidang Bersertifikat">
-						<LayerGroup>{BidangBersertifikat && <GeoJSON data={BidangBersertifikat} style={{ weight: 2, color: "#fbed74" }} ref={geoJsonLayerRef} onEachFeature={onEachData} />}</LayerGroup>
+					<LayersControl.Overlay checked name="Milik Pemerintah Desa">
+						<LayerGroup>{PemerintahDesa && <GeoJSON data={PemerintahDesa} style={{ weight: 2, color: "#337d1c" }} onEachFeature={onEachData} />}</LayerGroup>
+					</LayersControl.Overlay>
+					<LayersControl.Overlay checked name="Tanah Bersertifikat">
+						<LayerGroup>{BidangBersertifikat && <GeoJSON data={BidangBersertifikat} style={{ weight: 2, color: "#777d1c" }} onEachFeature={onEachData} />}</LayerGroup>
+					</LayersControl.Overlay>
+					<LayersControl.Overlay checked name="Milik Pemerintah Kelurahan">
+						<LayerGroup>{PemerintahKELURAHAN && <GeoJSON data={PemerintahKELURAHAN} style={{ weight: 2, color: "#7a1a1c" }} onEachFeature={onEachData} />}</LayerGroup>
 					</LayersControl.Overlay>
 					<LayersControl.Overlay checked name="Map Label">
 						<TileLayer url="http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png" attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />

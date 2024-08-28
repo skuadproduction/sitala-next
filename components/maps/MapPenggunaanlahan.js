@@ -119,7 +119,7 @@ const MapTataruang = (props, items) => {
 				<ZoomControl position="bottomright" />
 
 				<LayersControl position="bottomleft" collapsed={false}>
-					<LayersControl.BaseLayer name="Base" checked={true}>
+					<LayersControl.BaseLayer name="Base">
 						<TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
 					</LayersControl.BaseLayer>
 					<LayersControl.BaseLayer name="Dark">
@@ -128,7 +128,7 @@ const MapTataruang = (props, items) => {
 							attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 						/>
 					</LayersControl.BaseLayer>
-					<LayersControl.BaseLayer name="Satellite">
+					<LayersControl.BaseLayer name="Satellite" checked={true}>
 						<TileLayer url="http://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
 					</LayersControl.BaseLayer>
 					{/* LSD */}

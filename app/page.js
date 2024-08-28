@@ -27,7 +27,7 @@ export default function Home() {
 						<h1 className="text-2xl lg:text-6xl font-bold">Selamat Datang di Sistem Informasi Pertanahan dan Wilayah (SITALA) Kabupaten Wonogiri</h1>
 						<p className="py-6 text-sm  lg:text-lg">
 							Selamat datang di SITALA, solusi terbaik untuk mengelola informasi data tanah dan wilayah kabupaten Wonogiri dengan lebih efisien dan efektif. Dengan teknologi Geographical Information System (GIS) terkini, SITALA memberikan
-							akses mudah dan cepat untuk mengelola, menganalisi dan memvisualisasikan data tanah dan wilayah secara komprehensif bagi para stakeholder.
+							akses mudah dan cepat untuk mengelola, menganalisis dan memvisualisasikan data tanah dan wilayah secara komprehensif bagi para stakeholder.
 						</p>
 						{/* <button className="btn btn-primary">Get Started</button> */}
 					</div>
@@ -144,7 +144,7 @@ export default function Home() {
 								{/* card 2 */}
 								<div className="card w-60 lg:w-96 bg-base-100 shadow-xl mb-10">
 									<figure>
-										<img src="https://datascience.aero/wp-content/uploads/2022/03/geospatial-geojson-176.jpg" alt="Shoes" />
+										<img src="https://datascience.aero/wp-content/uploads/2022/03/geospatial-geojson-176.jpg" alt="Shoes" width={100} />
 									</figure>
 									<div className="card-body">
 										<h2 className="card-title">Visualisasi Poligon Area</h2>
@@ -181,19 +181,6 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
-
-			{/* gabung sitala */}
-			{/* <div className="py-40 mx-20">
-				<div className="bg-gradient-to-r from-cyan-500 to-blue-500 hero rounded-lg" style={{ minHeight: "50dvh" }}>
-					<div className="hero-content text-center text-white">
-						<div className="max-w-2xl">
-							<h1 className="mb-5 text-6xl font-bold">Siap untuk Begabung?</h1>
-							<p className="mb-5">Mari bergabung dengan SITALA sekarang juga dan mulai mengelola informasi tanah dan wilayah dengan lebih efisien.</p>
-							<button className="btn btn-primary">Get Started</button>
-						</div>
-					</div>
-				</div>
-			</div> */}
 
 			<ScrollTopBtn />
 			<div className="divider"></div>

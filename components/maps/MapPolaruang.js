@@ -135,7 +135,7 @@ const MapPolaruang = (props) => {
 				<ZoomControl position="bottomright" />
 
 				<LayersControl position="bottomleft" collapsed={true}>
-					<LayersControl.BaseLayer name="Base" checked={true}>
+					<LayersControl.BaseLayer name="Base">
 						<TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
 					</LayersControl.BaseLayer>
 					<LayersControl.BaseLayer name="Dark">
@@ -144,45 +144,45 @@ const MapPolaruang = (props) => {
 							attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 						/>
 					</LayersControl.BaseLayer>
-					<LayersControl.BaseLayer name="Satellite">
+					<LayersControl.BaseLayer name="Satellite" checked={true}>
 						<TileLayer url="http://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
 					</LayersControl.BaseLayer>
 					{/* Pola Ruang */}
 					<LayersControl.Overlay name="POLA RUANG"></LayersControl.Overlay>
-					<LayersControl.Overlay checked name="[POLA RUANG]_Kawasan Hutan Lindung">
+					<LayersControl.Overlay checked name="Kawasan Hutan Lindung">
 						{HutanLindung && <GeoJSON data={HutanLindung} style={{ weight: 2, color: "#cb72a1" }} />}
 					</LayersControl.Overlay>
-					<LayersControl.Overlay checked name="[POLA RUANG]_Kawasan Hutan Produksi Terbatas">
+					<LayersControl.Overlay checked name="Kawasan Hutan Produksi Terbatas">
 						{HutanProduksiTerbatas && <GeoJSON data={HutanProduksiTerbatas} style={{ weight: 2, color: "#008418" }} />}
 					</LayersControl.Overlay>
-					<LayersControl.Overlay checked name="[POLA RUANG]_Kawasan Padang Rumput">
+					<LayersControl.Overlay checked name="Kawasan Padang Rumput">
 						{KeunikanBentangAlam && <GeoJSON data={KeunikanBentangAlam} style={{ weight: 2, color: "#28d150" }} />}
 					</LayersControl.Overlay>
-					<LayersControl.Overlay checked name="[POLA RUANG]_Kawasan Perikanan Budidaya">
+					<LayersControl.Overlay checked name="Kawasan Perikanan Budidaya">
 						{PerikananBudidaya && <GeoJSON data={PerikananBudidaya} style={{ weight: 2, color: "#87ff63" }} />}
 					</LayersControl.Overlay>
-					<LayersControl.Overlay checked name="[POLA RUANG]_Kawasan Perikanan Tangkap">
+					<LayersControl.Overlay checked name="Kawasan Perikanan Tangkap">
 						{PerikananTangkap && <GeoJSON data={PerikananTangkap} style={{ weight: 2, color: "#1fe0a6" }} />}
 					</LayersControl.Overlay>
-					<LayersControl.Overlay checked name="[POLA RUANG]_Kawasan Perkebunan">
+					<LayersControl.Overlay checked name="Kawasan Perkebunan">
 						{Perkebunan && <GeoJSON data={Perkebunan} style={{ weight: 2, color: "#ffc455" }} />}
 					</LayersControl.Overlay>
-					<LayersControl.Overlay checked name="[POLA RUANG]_Kawasan Permukiman Perdesaan">
+					<LayersControl.Overlay checked name="Kawasan Permukiman Perdesaan">
 						{PermukimanPerdesaan && <GeoJSON data={PermukimanPerdesaan} style={{ weight: 2, color: "#ff5a01" }} />}
 					</LayersControl.Overlay>
-					<LayersControl.Overlay checked name="[POLA RUANG]_Kawasan Permukiman Perkotaan">
+					<LayersControl.Overlay checked name="Kawasan Permukiman Perkotaan">
 						{PermukimanPerkotaan && <GeoJSON data={PermukimanPerkotaan} style={{ weight: 2, color: "#cde64e" }} />}
 					</LayersControl.Overlay>
-					<LayersControl.Overlay checked name="[POLA RUANG]_Kawasan Peruntukan Industri">
+					<LayersControl.Overlay checked name="Kawasan Peruntukan Industri">
 						{PeruntukanIndustri && <GeoJSON data={PeruntukanIndustri} style={{ weight: 2, color: "#008a57" }} />}
 					</LayersControl.Overlay>
-					<LayersControl.Overlay checked name="[POLA RUANG]_Kawasan Sekitar Waduk atau Sungai">
+					<LayersControl.Overlay checked name="Kawasan Sekitar Waduk atau Sungai">
 						{SekitarDanauWaduk && <GeoJSON data={SekitarDanauWaduk} style={{ weight: 2, color: "#18e9e2" }} />}
 					</LayersControl.Overlay>
-					<LayersControl.Overlay checked name="[POLA RUANG]_Kawsan Tanaman Pangan">
+					<LayersControl.Overlay checked name="Kawsan Tanaman Pangan">
 						{TanamanPangan && <GeoJSON data={TanamanPangan} style={{ weight: 2, color: "#fffb01" }} />}
 					</LayersControl.Overlay>
-					<LayersControl.Overlay checked name="[POLA RUANG]_Sempadan Sungai">
+					<LayersControl.Overlay checked name="Sempadan Sungai">
 						{SempadanSungai && <GeoJSON data={SempadanSungai} style={{ weight: 2, color: "#000dfe" }} />}
 					</LayersControl.Overlay>
 					<LayersControl.Overlay checked name="Map Label">
