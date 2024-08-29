@@ -144,7 +144,7 @@ export default function Home() {
 								{/* card 2 */}
 								<div className="card w-60 lg:w-96 bg-base-100 shadow-xl mb-10">
 									<figure>
-										<img src="https://datascience.aero/wp-content/uploads/2022/03/geospatial-geojson-176.jpg" alt="Shoes" width={100} />
+										<img src="https://datascience.aero/wp-content/uploads/2022/03/geospatial-geojson-176.jpg" alt="Shoes" />
 									</figure>
 									<div className="card-body">
 										<h2 className="card-title">Visualisasi Poligon Area</h2>
